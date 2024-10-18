@@ -17,9 +17,11 @@ mongoose
     console.log('Error connecting to the database');
     console.error(error);
   });
-
 // Define the port number
 const port = 3000;
+
+// import the movies model
+const Movie = require('./models/movies.model');
 
 // Define a route for the root URL
 app.get('/', (req, res) => {
