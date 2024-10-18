@@ -4,6 +4,9 @@ const dotenv = require('dotenv');
 
 // Create an Express application
 const app = express();
+
+// Parse JSON-encoded bodies
+app.use(express.json());
 // Load environment variables from .env file
 dotenv.config();
 
@@ -22,11 +25,10 @@ const port = 3000;
 
 // import the movies model
 const Movie = require('./models/movies.model');
+const addMovie = require('./controllers/addMovie');
 
 // Define a route for the root URL
-app.get('/', (req, res) => {
-  res.send('Hello World! Welcome to my Express server.');
-});
+app.post('/api/movies', addMovie);
 
 // Start the server
 app.listen(port, () => {
