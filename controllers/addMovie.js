@@ -1,6 +1,12 @@
 const addMovie = (req, res) => {
+  const { movie_name, info, rating } = req.body;
+
+  //validation
+
+  // success
   res.status(200).json({
-    message: 'Add a new movie',
+    status: 'sucess',
+    message: 'Movie added successfully',
   });
 };
 
