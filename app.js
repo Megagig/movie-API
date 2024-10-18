@@ -1,11 +1,22 @@
 // Import the express module
-import mongoose from './node_modules/mongoose/types/index.d';
 const express = require('express');
+const dotenv = require('dotenv');
 
 // Create an Express application
 const app = express();
+// Load environment variables from .env file
+dotenv.config();
 
 const mongoose = require('mongoose');
+mongoose
+  .connect(process.env.MONGODB_URI, {})
+  .then(() => {
+    console.log('Connected to the database');
+  })
+  .catch((error) => {
+    console.log('Error connecting to the database');
+    console.error(error);
+  });
 
 // Define the port number
 const port = 3000;
