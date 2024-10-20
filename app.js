@@ -26,9 +26,11 @@ const port = 3000;
 // import the movies model
 const Movie = require('./models/movies.model');
 const addMovie = require('./controllers/addMovie');
+const getAllMoves = require('./controllers/getAllMovies');
 
 // Define a route for the root URL
 app.post('/api/movies', addMovie);
+app.get('/api/movies', getAllMoves);
 
 // Start the server
 app.listen(port, () => {

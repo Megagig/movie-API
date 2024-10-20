@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const addMovie = async (req, res) => {
-  const { movie_name, info, rating } = req.body;
+  const { movie_name, info, rating, description } = req.body;
 
   // initialized the movies model (previously set up) for interacting with the database:
   const moviesModel = mongoose.model('movies');
@@ -23,6 +23,7 @@ const addMovie = async (req, res) => {
       movie_name: movie_name,
       info: info,
       rating: rating,
+      description: description,
     });
     console.log(createdMovie);
   } catch (error) {
