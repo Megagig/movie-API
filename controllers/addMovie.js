@@ -6,7 +6,6 @@ const addMovie = async (req, res) => {
   const moviesModel = mongoose.model('movies');
 
   //validation
-
   try {
     if (!movie_name || !info || !rating)
       throw 'Movie, info and rating is required';
@@ -18,13 +17,22 @@ const addMovie = async (req, res) => {
     });
   }
 
-  // success
   // Adding a movie
-  await moviesModel.create({
-    movie_name: movie_name,
-    info: info,
-    rating: rating,
-  });
+  try {
+    const createdMovie = await moviesModel.create({
+      movie_name: movie_name,
+      info: info,
+      rating: rating,
+    });
+    console.log(createdMovie);
+  } catch (error) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Movie Creation failed. Something happened',
+    });
+  }
+
+  // success
   res.status(200).json({
     status: 'sucess',
     message: 'Movie added successfully',
