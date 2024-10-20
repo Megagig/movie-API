@@ -1,5 +1,9 @@
-const addMovie = (req, res) => {
+const mongoose = require('mongoose');
+const addMovie = async (req, res) => {
   const { movie_name, info, rating } = req.body;
+
+  // initialized the movies model (previously set up) for interacting with the database:
+  const moviesModel = mongoose.model('movies');
 
   //validation
 
@@ -15,6 +19,12 @@ const addMovie = (req, res) => {
   }
 
   // success
+  // Adding a movie
+  await moviesModel.create({
+    movie_name: movie_name,
+    info: info,
+    rating: rating,
+  });
   res.status(200).json({
     status: 'sucess',
     message: 'Movie added successfully',
