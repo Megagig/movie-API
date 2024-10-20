@@ -28,11 +28,13 @@ const Movie = require('./models/movies.model');
 const addMovie = require('./controllers/addMovie');
 const getAllMoves = require('./controllers/getAllMovies');
 const getSingleMovies = require('./controllers/getSingleMovies');
+const editMovie = require('./controllers/editMovie');
 
 // Define a route for the root URL
 app.post('/api/movies', addMovie);
 app.get('/api/movies', getAllMoves);
 app.get('/api/movies/:movie_id', getSingleMovies);
+app.patch('/api/movies', editMovie);
 
 // Start the server
 app.listen(port, () => {
