@@ -1,3 +1,4 @@
+require('express-async-errors');
 // Import the express module
 const express = require('express');
 const dotenv = require('dotenv');
@@ -31,6 +32,7 @@ const getSingleMovies = require('./controllers/getSingleMovies');
 const editMovie = require('./controllers/editMovie');
 const deleteMovie = require('./controllers/deleteMovie');
 const getRecommendation = require('./controllers/getRecommendation');
+const errorHandler = require('./handlers/errorHandler');
 
 // Define a route for the root URL
 app.post('/api/movies', addMovie);
@@ -39,6 +41,8 @@ app.get('/api/movies/:movie_id', getSingleMovies);
 app.patch('/api/movies', editMovie);
 app.delete('/api/movies/:movie_id', deleteMovie);
 app.get('/api/openai/movies', getRecommendation);
+
+app.use(errorHandler);
 
 // Start the server
 app.listen(port, () => {
