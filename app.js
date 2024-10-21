@@ -22,24 +22,30 @@ mongoose
     console.error(error);
   });
 // Define the port number
-const port = 3000;
+const port = 8000;
 
 // import the movies model
 const Movie = require('./models/movies.model');
-const addMovie = require('./controllers/addMovie');
-const getAllMoves = require('./controllers/getAllMovies');
-const getSingleMovies = require('./controllers/getSingleMovies');
-const editMovie = require('./controllers/editMovie');
-const deleteMovie = require('./controllers/deleteMovie');
+// const addMovie = require('./controllers/addMovie');
+// const getAllMoves = require('./controllers/getAllMovies');
+// const getSingleMovies = require('./controllers/getSingleMovies');
+// const editMovie = require('./controllers/editMovie');
+// const deleteMovie = require('./controllers/deleteMovie');
+
+//import the movies Routes
+const moviesRoutes = require('./routes/moviesRoutes');
 const getRecommendation = require('./controllers/getRecommendation');
 const errorHandler = require('./handlers/errorHandler');
 
+//use the movies routes
+app.use(moviesRoutes);
+
 // Define a route for the root URL
-app.post('/api/movies', addMovie);
-app.get('/api/movies', getAllMoves);
-app.get('/api/movies/:movie_id', getSingleMovies);
-app.patch('/api/movies', editMovie);
-app.delete('/api/movies/:movie_id', deleteMovie);
+// app.post('/api/movies', addMovie);
+// app.get('/api/movies', getAllMoves);
+// app.get('/api/movies/:movie_id', getSingleMovies);
+// app.patch('/api/movies', editMovie);
+// app.delete('/api/movies/:movie_id', deleteMovie);
 app.get('/api/openai/movies', getRecommendation);
 
 app.use(errorHandler);
